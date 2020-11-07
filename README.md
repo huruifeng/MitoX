@@ -17,8 +17,6 @@ anndata
 
 To install **MitoX**, follow these instructions:
 
-### Github
-
 1. MitoX can be installed directly from Github using pip:
 
 ```alias
