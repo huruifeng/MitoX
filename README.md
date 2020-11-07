@@ -22,7 +22,7 @@ To install **MitoX**, follow these instructions:
 MitoX can be installed directly from Github using pip:
 
 ```alias
-pip install git+https://github.com/lkmklsmn/insct.git
+pip install git+https://github.com/huruifeng/MitoX.git
 ```
 
 User can download the package from Github and install it locally:
