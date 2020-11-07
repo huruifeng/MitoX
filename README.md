@@ -19,13 +19,13 @@ To install **MitoX**, follow these instructions:
 
 ### Github
 
-MitoX can be installed directly from Github using pip:
+1. MitoX can be installed directly from Github using pip:
 
 ```alias
 pip install git+https://github.com/huruifeng/MitoX.git
 ```
 
-User can download the package from Github and install it locally:
+2. User can download the package from Github and install it locally:
 
 ```alias
 git clone https://github.com/huruifeng/MitoX
