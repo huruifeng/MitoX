@@ -27,7 +27,7 @@ import tempfile
 
 # cmd_str = "python -m HTSeq.scripts.count -i ENSG00000198727 --additional-attr=gene_name -f bam bam/AZ_A2.bam Homo_sapiens.GRCh38.101.gtf.gz >> out.txt"
 
-gene_id = { "MT-ATP8": "ENSG00000228253","MT-ATP6": "ENSG00000198899","MT-CO1": "ENSG00000198804","MT-CO2": "ENSG00000198712",
+human_gene_id = { "MT-ATP8": "ENSG00000228253","MT-ATP6": "ENSG00000198899","MT-CO1": "ENSG00000198804","MT-CO2": "ENSG00000198712",
             "MT-CO3": "ENSG00000198938", "MT-CYB": "ENSG00000198727", "MT-ND1": "ENSG00000198888","MT-ND2": "ENSG00000198763",
             "MT-ND3": "ENSG00000198840", "MT-ND4L": "ENSG00000212907","MT-ND4": "ENSG00000198886", "MT-ND5": "ENSG00000198786",
             "MT-ND6": "ENSG00000198695", "MT-TA": "ENSG00000210127","MT-TR": "ENSG00000210174", "MT-TN": "ENSG00000210135",
@@ -37,7 +37,7 @@ gene_id = { "MT-ATP8": "ENSG00000228253","MT-ATP6": "ENSG00000198899","MT-CO1": 
             "MT-TP": "ENSG00000210196", "MT-TS1": "ENSG00000210151","MT-TS2": "ENSG00000210184","MT-TT": "ENSG00000210195",
             "MT-TW": "ENSG00000210117","MT-TY": "ENSG00000210144","MT-TV": "ENSG00000210077","MT-RNR1": "ENSG00000211459",
             "MT-RNR2": "ENSG00000210082"}
-id_gene = {v: k for k, v in gene_id.items()}
+human_id_gene = {v: k for k, v in human_gene_id.items()}
 
 mus_gene_id = {"mt-Atp6":"ENSMUSG00000064357","mt-Atp8":"ENSMUSG00000064356","mt-Co1":"ENSMUSG00000064351","mt-Co2":"ENSMUSG00000064354",
               "mt-Co3":"ENSMUSG00000064358","mt-Cytb":"ENSMUSG00000064370","mt-Nd1":"ENSMUSG00000064341","mt-Nd2":"ENSMUSG00000064345",
@@ -225,6 +225,8 @@ def sepearted_bam_profile(bam_folder, gtf_file, fmt="bam", sp="human", chr_name=
     pool.close()
 
     if sp.lower()=="human":
+        gene_id = human_gene_id
+        id_gene = human_id_gene
         start_str = "ENSG"
     elif sp.lower()=="mus":
         gene_id = mus_gene_id
