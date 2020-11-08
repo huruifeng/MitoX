@@ -39,16 +39,16 @@ gene_id = { "MT-ATP8": "ENSG00000228253","MT-ATP6": "ENSG00000198899","MT-CO1": 
             "MT-RNR2": "ENSG00000210082"}
 id_gene = {v: k for k, v in gene_id.items()}
 
-mus_gene_id = { "mt-Atp6","ENSMUSG00000064357","mt-Atp8","ENSMUSG00000064356","mt-Co1","ENSMUSG00000064351","mt-Co2","ENSMUSG00000064354",
-"mt-Co3","ENSMUSG00000064358","mt-Cytb","ENSMUSG00000064370","mt-Nd1","ENSMUSG00000064341","mt-Nd2","ENSMUSG00000064345",
-"mt-Nd3","ENSMUSG00000064360","mt-Nd4","ENSMUSG00000064363","mt-Nd4l","ENSMUSG00000065947","mt-Nd5","ENSMUSG00000064367",
-"mt-Nd6","ENSMUSG00000064368","mt-Rnr1","ENSMUSG00000064337","mt-Rnr2","ENSMUSG00000064339","mt-Ta","ENSMUSG00000064347",
-"mt-Tc","ENSMUSG00000064349","mt-Td","ENSMUSG00000064353","mt-Te","ENSMUSG00000064369","mt-Tf","ENSMUSG00000064336",
-"mt-Tg","ENSMUSG00000064359","mt-Th","ENSMUSG00000064364","mt-Ti","ENSMUSG00000064342","mt-Tk","ENSMUSG00000064355",
-"mt-Tl1","ENSMUSG00000064340","mt-Tl2","ENSMUSG00000064366","mt-Tm","ENSMUSG00000064344","mt-Tn","ENSMUSG00000064348",
-"mt-Tp","ENSMUSG00000064372","mt-Tq","ENSMUSG00000064343","mt-Tr","ENSMUSG00000064361","mt-Ts1","ENSMUSG00000064352",
-"mt-Ts2","ENSMUSG00000064365","mt-Tt","ENSMUSG00000064371","mt-Tv","ENSMUSG00000064338","mt-Tw","ENSMUSG00000064346",
-"mt-Ty","ENSMUSG00000064350"}
+mus_gene_id = {"mt-Atp6":"ENSMUSG00000064357","mt-Atp8":"ENSMUSG00000064356","mt-Co1":"ENSMUSG00000064351","mt-Co2":"ENSMUSG00000064354",
+              "mt-Co3":"ENSMUSG00000064358","mt-Cytb":"ENSMUSG00000064370","mt-Nd1":"ENSMUSG00000064341","mt-Nd2":"ENSMUSG00000064345",
+              "mt-Nd3":"ENSMUSG00000064360","mt-Nd4":"ENSMUSG00000064363","mt-Nd4l":"ENSMUSG00000065947","mt-Nd5":"ENSMUSG00000064367",
+              "mt-Nd6":"ENSMUSG00000064368","mt-Rnr1":"ENSMUSG00000064337","mt-Rnr2":"ENSMUSG00000064339","mt-Ta":"ENSMUSG00000064347",
+              "mt-Tc":"ENSMUSG00000064349","mt-Td":"ENSMUSG00000064353","mt-Te":"ENSMUSG00000064369","mt-Tf":"ENSMUSG00000064336",
+              "mt-Tg":"ENSMUSG00000064359","mt-Th":"ENSMUSG00000064364","mt-Ti":"ENSMUSG00000064342","mt-Tk":"ENSMUSG00000064355",
+              "mt-Tl1":"ENSMUSG00000064340","mt-Tl2":"ENSMUSG00000064366","mt-Tm":"ENSMUSG00000064344","mt-Tn":"ENSMUSG00000064348",
+              "mt-Tp":"ENSMUSG00000064372","mt-Tq":"ENSMUSG00000064343","mt-Tr":"ENSMUSG00000064361","mt-Ts1":"ENSMUSG00000064352",
+              "mt-Ts2":"ENSMUSG00000064365","mt-Tt":"ENSMUSG00000064371","mt-Tv":"ENSMUSG00000064338","mt-Tw":"ENSMUSG00000064346",
+              "mt-Ty":"ENSMUSG00000064350"}
 mus_id_gene = {v: k for k, v in mus_gene_id.items()}
 
 def do_reads_count(params):
@@ -225,10 +225,11 @@ def sepearted_bam_profile(bam_folder, gtf_file, fmt="bam", sp="human", chr_name=
     pool.close()
 
     if sp.lower()=="human":
-        pass
+        start_str = "ENSG"
     elif sp.lower()=="mus":
         gene_id = mus_gene_id
         id_gene = mus_id_gene
+        start_str = "ENSMU"
     else:
         raise ("ERROR: Invalid 'sp' value, it should be 'human' or 'mus'.")
 
@@ -239,7 +240,7 @@ def sepearted_bam_profile(bam_folder, gtf_file, fmt="bam", sp="human", chr_name=
         gene_ls = results[i][sample_name]
         id_x = list(gene_ls.keys())[0]
 
-        if id_x.startswith("ENSG"):
+        if id_x.startswith(start_str):
             for gene_i in id_gene:
                 if gene_i in gene_ls.keys():
                     read_counts[sample_name][id_gene[gene_i]] = gene_ls[gene_i]
