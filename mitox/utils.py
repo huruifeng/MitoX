@@ -125,11 +125,10 @@ def gen_mut_profile(bams, fmt="bam",sp="human",
     if isinstance(bams,str):
         sample = read_sam(bams,fmt,sp,chr_name,seq_type,combined_bam,
                           tag_name,barcodes,min_read,max_depth,min_baseq,min_mapq,n_jobs)
-    elif isinstance(bams,Sample):
+    elif isinstance(bams,Sample) or isinstance(bams,list):
         sample=bams
     else:
-        raise("ERROR: Invalid 'bams' value. "
-              "It should be a path string to the folder of bam/sam files, or an result from function 'read_sam()'. ")
+        raise("ERROR: Invalid 'bams' value. It should be a path string to the folder of bam/sam files, or an result from function 'read_sam()'. ")
 
     mut_dict = {}
     mut_cov = {}
@@ -213,8 +212,7 @@ def gen_mut_profile(bams, fmt="bam",sp="human",
         adata = sample.gen_mut_profile()
         return adata
     else:
-        print("""Error (code 6): Wrong arguments for the function gen_mut_profile(). """)
-        return -1
+        raise ("Invalid 'bams' value. It should be a path string to the folder of bam/sam files, or an result from function 'read_sam()'. ")
 
 def add_metadata(adata,file_name,delimiter='\t'):
     df_metadata = pd.read_csv(file_name,sep=delimiter,index_col=0)
