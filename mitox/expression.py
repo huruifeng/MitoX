@@ -280,7 +280,7 @@ def combine_mut_expr(mut_adata, expr_adata):
         for meta_i in expr_adata.obs_keys():
             combined_adata.obs[meta_i] = expr_adata.obs.loc[x,meta_i]
     else:
-        raise("ERROR: No metadata was found, please add metadata to the mut_adata or expr_adata first..")
+        raise("ERROR: No metadata was found, please add metadata to the mut_adata or expr_adata first.")
 
     for col_i in df_expr.columns:
         combined_adata.obs[col_i] = df_expr[col_i]
@@ -305,9 +305,10 @@ def plot_expr(adata, gene, group=None, using={}, fig_name="expr_plot.png", fig_s
             ylabel="Expression (log2(counts+1))"
 
         if not ("metadata" in adata.uns and adata.uns["metadata"]):
+            meta_cols = []
             expr_gene_df = expr_df.loc[:, gene]
             data_df = expr_gene_df.melt(var_name="gene")
-            print("WARNING: There is no annotation data for samples.'group' was set to None .")
+            print("WARNING: There is no annotation data (metadata) for samples.'group' was set to None .")
             group = None
         else:
             df_meta = adata.obs.copy(deep=True)
@@ -317,10 +318,15 @@ def plot_expr(adata, gene, group=None, using={}, fig_name="expr_plot.png", fig_s
             expr_meta_df = expr_meta_df.loc[:, gene_and_meta_col]
             data_df = expr_meta_df.melt(id_vars=meta_cols, var_name="gene")
 
-        if len(using) != 0:
-            k_col = list(using.keys())[0]
-            k_values = using[k_col]
-            data_df = data_df.loc[data_df[k_col].isin(k_values),:]
+        if len(using) != 0 and isinstance(using, dict):
+            for k_col in using:
+                if k_col in meta_cols:
+                    k_values = using[k_col]
+                    if isinstance(k_values,str):
+                        k_values=[k_values]
+                    data_df = data_df.loc[data_df[k_col].isin(k_values),:]
+                else:
+                    raise("ERROR: " + k_col + " is not in the annotation data (metadata), please check if the name is correct.")
 
     elif "combine" in adata.uns and adata.uns["combine"]:
         # expr_df = adata.to_df()
