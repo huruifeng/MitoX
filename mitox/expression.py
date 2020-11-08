@@ -27,30 +27,6 @@ import tempfile
 
 # cmd_str = "python -m HTSeq.scripts.count -i ENSG00000198727 --additional-attr=gene_name -f bam bam/AZ_A2.bam Homo_sapiens.GRCh38.101.gtf.gz >> out.txt"
 
-human_gene_id = { "MT-ATP8": "ENSG00000228253","MT-ATP6": "ENSG00000198899","MT-CO1": "ENSG00000198804","MT-CO2": "ENSG00000198712",
-            "MT-CO3": "ENSG00000198938", "MT-CYB": "ENSG00000198727", "MT-ND1": "ENSG00000198888","MT-ND2": "ENSG00000198763",
-            "MT-ND3": "ENSG00000198840", "MT-ND4L": "ENSG00000212907","MT-ND4": "ENSG00000198886", "MT-ND5": "ENSG00000198786",
-            "MT-ND6": "ENSG00000198695", "MT-TA": "ENSG00000210127","MT-TR": "ENSG00000210174", "MT-TN": "ENSG00000210135",
-            "MT-TD": "ENSG00000210154",  "MT-TC": "ENSG00000210140","MT-TE": "ENSG00000210194","MT-TQ": "ENSG00000210107",
-            "MT-TG": "ENSG00000210164", "MT-TH": "ENSG00000210176","MT-TI": "ENSG00000210100","MT-TL1": "ENSG00000209082",
-            "MT-TL2": "ENSG00000210191","MT-TK": "ENSG00000210156","MT-TM": "ENSG00000210112","MT-TF": "ENSG00000210049",
-            "MT-TP": "ENSG00000210196", "MT-TS1": "ENSG00000210151","MT-TS2": "ENSG00000210184","MT-TT": "ENSG00000210195",
-            "MT-TW": "ENSG00000210117","MT-TY": "ENSG00000210144","MT-TV": "ENSG00000210077","MT-RNR1": "ENSG00000211459",
-            "MT-RNR2": "ENSG00000210082"}
-human_id_gene = {v: k for k, v in human_gene_id.items()}
-
-mus_gene_id = {"mt-Atp6":"ENSMUSG00000064357","mt-Atp8":"ENSMUSG00000064356","mt-Co1":"ENSMUSG00000064351","mt-Co2":"ENSMUSG00000064354",
-              "mt-Co3":"ENSMUSG00000064358","mt-Cytb":"ENSMUSG00000064370","mt-Nd1":"ENSMUSG00000064341","mt-Nd2":"ENSMUSG00000064345",
-              "mt-Nd3":"ENSMUSG00000064360","mt-Nd4":"ENSMUSG00000064363","mt-Nd4l":"ENSMUSG00000065947","mt-Nd5":"ENSMUSG00000064367",
-              "mt-Nd6":"ENSMUSG00000064368","mt-Rnr1":"ENSMUSG00000064337","mt-Rnr2":"ENSMUSG00000064339","mt-Ta":"ENSMUSG00000064347",
-              "mt-Tc":"ENSMUSG00000064349","mt-Td":"ENSMUSG00000064353","mt-Te":"ENSMUSG00000064369","mt-Tf":"ENSMUSG00000064336",
-              "mt-Tg":"ENSMUSG00000064359","mt-Th":"ENSMUSG00000064364","mt-Ti":"ENSMUSG00000064342","mt-Tk":"ENSMUSG00000064355",
-              "mt-Tl1":"ENSMUSG00000064340","mt-Tl2":"ENSMUSG00000064366","mt-Tm":"ENSMUSG00000064344","mt-Tn":"ENSMUSG00000064348",
-              "mt-Tp":"ENSMUSG00000064372","mt-Tq":"ENSMUSG00000064343","mt-Tr":"ENSMUSG00000064361","mt-Ts1":"ENSMUSG00000064352",
-              "mt-Ts2":"ENSMUSG00000064365","mt-Tt":"ENSMUSG00000064371","mt-Tv":"ENSMUSG00000064338","mt-Tw":"ENSMUSG00000064346",
-              "mt-Ty":"ENSMUSG00000064350"}
-mus_id_gene = {v: k for k, v in mus_gene_id.items()}
-
 def do_reads_count(params):
     (bam_folder, samfile, i, sam_n, expression_temp, chr_name, seqlen, min_mapq, exons) = params
 
@@ -186,6 +162,29 @@ def gen_expression_profile(bam_folder, gtf_file, fmt="bam", sp="human",
 
 def sepearted_bam_profile(bam_folder, gtf_file, fmt="bam", sp="human", chr_name="MT", stranded=True,
                            feature_type="exon", min_mapq=10, n_jobs=2):
+    human_gene_id = {"MT-ATP8": "ENSG00000228253", "MT-ATP6": "ENSG00000198899", "MT-CO1": "ENSG00000198804", "MT-CO2": "ENSG00000198712",
+                     "MT-CO3": "ENSG00000198938", "MT-CYB": "ENSG00000198727", "MT-ND1": "ENSG00000198888", "MT-ND2": "ENSG00000198763",
+                     "MT-ND3": "ENSG00000198840", "MT-ND4L": "ENSG00000212907", "MT-ND4": "ENSG00000198886","MT-ND5": "ENSG00000198786",
+                     "MT-ND6": "ENSG00000198695", "MT-TA": "ENSG00000210127", "MT-TR": "ENSG00000210174","MT-TN": "ENSG00000210135",
+                     "MT-TD": "ENSG00000210154", "MT-TC": "ENSG00000210140", "MT-TE": "ENSG00000210194","MT-TQ": "ENSG00000210107",
+                     "MT-TG": "ENSG00000210164", "MT-TH": "ENSG00000210176", "MT-TI": "ENSG00000210100", "MT-TL1": "ENSG00000209082",
+                     "MT-TL2": "ENSG00000210191", "MT-TK": "ENSG00000210156", "MT-TM": "ENSG00000210112", "MT-TF": "ENSG00000210049",
+                     "MT-TP": "ENSG00000210196", "MT-TS1": "ENSG00000210151", "MT-TS2": "ENSG00000210184", "MT-TT": "ENSG00000210195",
+                     "MT-TW": "ENSG00000210117", "MT-TY": "ENSG00000210144", "MT-TV": "ENSG00000210077", "MT-RNR1": "ENSG00000211459",
+                     "MT-RNR2": "ENSG00000210082"}
+    human_id_gene = {v: k for k, v in human_gene_id.items()}
+
+    mus_gene_id = {"mt-Atp6": "ENSMUSG00000064357", "mt-Atp8": "ENSMUSG00000064356", "mt-Co1": "ENSMUSG00000064351", "mt-Co2": "ENSMUSG00000064354",
+                   "mt-Co3": "ENSMUSG00000064358", "mt-Cytb": "ENSMUSG00000064370", "mt-Nd1": "ENSMUSG00000064341", "mt-Nd2": "ENSMUSG00000064345",
+                   "mt-Nd3": "ENSMUSG00000064360", "mt-Nd4": "ENSMUSG00000064363", "mt-Nd4l": "ENSMUSG00000065947","mt-Nd5": "ENSMUSG00000064367",
+                   "mt-Nd6": "ENSMUSG00000064368", "mt-Rnr1": "ENSMUSG00000064337", "mt-Rnr2": "ENSMUSG00000064339","mt-Ta": "ENSMUSG00000064347",
+                   "mt-Tc": "ENSMUSG00000064349", "mt-Td": "ENSMUSG00000064353", "mt-Te": "ENSMUSG00000064369", "mt-Tf": "ENSMUSG00000064336",
+                   "mt-Tg": "ENSMUSG00000064359", "mt-Th": "ENSMUSG00000064364", "mt-Ti": "ENSMUSG00000064342","mt-Tk": "ENSMUSG00000064355",
+                   "mt-Tl1": "ENSMUSG00000064340", "mt-Tl2": "ENSMUSG00000064366", "mt-Tm": "ENSMUSG00000064344","mt-Tn": "ENSMUSG00000064348",
+                   "mt-Tp": "ENSMUSG00000064372", "mt-Tq": "ENSMUSG00000064343", "mt-Tr": "ENSMUSG00000064361","mt-Ts1": "ENSMUSG00000064352",
+                   "mt-Ts2": "ENSMUSG00000064365", "mt-Tt": "ENSMUSG00000064371", "mt-Tv": "ENSMUSG00000064338","mt-Tw": "ENSMUSG00000064346",
+                   "mt-Ty": "ENSMUSG00000064350"}
+    mus_id_gene = {v: k for k, v in mus_gene_id.items()}
 
     if sp.lower() == "human":
         seqlen = human_mt_len
@@ -274,8 +273,6 @@ def combine_mut_expr(mut_adata, expr_adata):
 
     df_expr = df_expr.loc[x, :]
     combined_adata = combined_adata[x, :]
-
-
 
     if "metadata" in mut_adata.uns_keys():
         pass
