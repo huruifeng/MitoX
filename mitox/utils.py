@@ -638,7 +638,7 @@ def dimension_reduction(adata,features="all", n_neighbors=20, n_components=2, di
     return None
 
 
-def plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DBSCAN",cluster_n=2,color_pal="Blues",cbar_frac=0.025, **kwargs):
+def plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DBSCAN",cluster_n=2,color_pal="Blues",cbar_frac=0.025, log2=False, **kwargs):
     if 'params' not in adata.uns_keys() or 'dimension_reduction' not in adata.uns['params']:
         print("ERROR: Please run 'dimension_reduction' first.")
         return -1
@@ -661,6 +661,10 @@ def plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DB
             return -1
         else:
             ylabel = adata.obs[cluster_color]
+            if cluster_color.startswith("MT-") or cluster_color.startswith("mt-") :
+                if log2:
+                    ylabel = np.log2(ylabel)
+
 
     y_set = list(set(ylabel))
     color_len = len(y_set)
