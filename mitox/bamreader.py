@@ -184,7 +184,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
 
     ######
     if seq_type == "bulk":
-        print("Each BAM file are considered as a sample and running on each BAM file separately...")
+        print("Each BAM file is considered as a sample and running on each BAM file separately...")
         print("Reading BAM/SAM files...")
         print(str(n_jobs) + ' processes are running ...')
 
@@ -203,7 +203,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
         print("Cleaning memory...")
     elif seq_type == "sc":
         if not combined_bam:
-            print("Each BAM file are considered as a cell sample and running on each BAM file separately...")
+            print("Each BAM file is considered as a cell sample and running on each BAM file separately...")
 
             now = datetime.now()  # current date and time
             date_time = now.strftime("%b/%d/%Y %a %H:%M:%S")
@@ -237,7 +237,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
             print("Cleaning temporary files...")
         ## combined_bam
         else:
-            print("the BAM file contains many cells, and barcodes will be used for cell count...")
+            print("The BAM file contains many cells, and barcodes will be used for cell count...")
             print(str(n_jobs) + ' processes are running...')
 
             now = datetime.now()  # current date and time

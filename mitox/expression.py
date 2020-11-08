@@ -130,7 +130,7 @@ def gen_expression_profile(bam_folder, gtf_file, fmt="bam", sp="human",
         read_adata = sepearted_bam_profile(bam_folder, gtf_file, fmt, sp, chr_name, stranded,feature_type, min_mapq,n_jobs)
     elif seq_type == "sc":
         if not combined_bam:
-            print("Each BAM file are considered as a cell sample and running on each BAM file separately...")
+            print("Each BAM file is considered as a cell sample and running on each BAM file separately...")
             read_adata = sepearted_bam_profile(bam_folder, gtf_file, fmt, sp, chr_name, stranded, feature_type,
                                                min_mapq, n_jobs)
         else:

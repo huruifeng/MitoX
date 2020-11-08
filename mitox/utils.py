@@ -130,6 +130,8 @@ def gen_mut_profile(bams, fmt="bam",sp="human",
     else:
         raise("ERROR: Invalid 'bams' value. It should be a path string to the folder of bam/sam files, or an result from function 'read_sam()'. ")
 
+    print("Generating heteroplasmy profiles...")
+
     mut_dict = {}
     mut_cov = {}
     index_ls_human = []
