@@ -331,7 +331,7 @@ def plot_expr(adata, gene, group=None, using={}, fig_name="expr_plot.png", fig_s
     elif "combine" in adata.uns and adata.uns["combine"]:
         # expr_df = adata.to_df()
         for gene_i in gene:
-            if gene_i not in adata.columns:
+            if gene_i not in adata.obs.columns:
                 print("WARNING: " + gene_i + " is not in the data, please check if the name is correct.")
                 gene.remove(gene_i)
         ylabel = "Expression (read counts)"
