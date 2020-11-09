@@ -67,10 +67,10 @@ def do_reads_count(params):
                     counts[list(iset)[0]] = 1
     return {samfile[:-4]: counts}
 
-def gen_expression_profile(bam_folder, gtf_file, fmt="bam", sp="human",
+def gen_expression_profile(bams, gtf_file, fmt="bam", sp="human",
                            chr_name="MT",
                            seq_type="sc",
-                           combined_bam=False,
+                           combined=False,
                             tag_name="CB",
                             barcodes="NULL",
                             min_read=200,
@@ -78,7 +78,7 @@ def gen_expression_profile(bam_folder, gtf_file, fmt="bam", sp="human",
                            feature_type="exon",
                            min_mapq=10,
                            n_jobs=2):
-
+    bam_folder = bams
     folder = bam_folder
     files = os.listdir(folder)
     sam_ls = []

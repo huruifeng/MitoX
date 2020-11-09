@@ -137,7 +137,7 @@ def do_split_bam(params):
 def read_sam(bam_folder, fmt="bam",sp="human",
              chr_name="MT",
              seq_type="sc",
-             combined_bam=False,
+             combined=False,
              tag_name="CB",
              barcodes="NULL",
              min_read=200,
