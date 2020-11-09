@@ -31,7 +31,7 @@ cd MitoX
 pip install .
 ```
 ## Main functions
-The full documents for all the functions in MitoX can be accessed in the [**Wiki page**](https://github.com/huruifeng/MitoX/wiki/MitoX)
+The full documents for all functions in MitoX can be accessed in the [**Wiki page**](https://github.com/huruifeng/MitoX/wiki/MitoX)
 
 1. Generate the **heteroplamy profiles** for all samples/cells
 ```
@@ -97,8 +97,8 @@ The full documents for all the functions in MitoX can be accessed in the [**Wiki
 * Example 3: [Running MitoX on droplet based dataset (10X dataset)]()
 
 ## Document and API
-1. The full descriptive documents for MitoX can be accessed in the [**Wiki page**](https://github.com/huruifeng/MitoX/wiki/MitoX)
-2. User can also open the **Doc** folder for API reference.
+1. The full descriptive documents for MitoX can be accessed on the [**Wiki page**](https://github.com/huruifeng/MitoX/wiki/MitoX)
+2. User can also open the [**Doc folder**](https://github.com/huruifeng/MitoX/tree/master/Doc) for API reference.
 
 ## Citaion
 
