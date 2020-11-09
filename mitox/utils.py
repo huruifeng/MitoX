@@ -536,7 +536,7 @@ def plot_clustermap(adata, x_df=None, features="var_muts", ann_color=None, ann_l
 
         col_colors_df = pd.DataFrame(data=ann_color_dict,index=x_df.columns)
     else:
-        print("WARNING: 'ann_color' should be a list witn elements in the metadata file")
+        raise("ERROR: 'ann_color' should be a list with elements in the metadata file")
 
     c = [ "white", "lightcoral", "red", "darkred"]
     v = [0, 0.33, 0.67, 1.]
