@@ -495,18 +495,15 @@ def plot_clustermap(adata, x_df=None, features="var_muts", ann_color=None, ann_l
                 x_df = x_df.T
                 x_df.fillna(value=np.nan, inplace=True)
             else:
-                print("Fearures '"+features+"' were selected to use. Runn ‘select_top_varible_variants’ first to set top N variable mutation positions.")
-                return -1
+                raise ("Fearures '"+features+"' were selected to use. Runn ‘select_top_varible_variants’ first to set top N variable mutation positions.")
         elif features=="distance":
             if "distance" in adata.obsm_keys():
                 x_df = adata.obsm['distance']
                 x_df.fillna(value=np.nan, inplace=True)
             else:
-                print("Running ‘cal_distance’ first to calculate the cell distance matrix.")
-                return -1
+                raise("Running ‘cal_distance’ first to calculate the cell distance matrix.")
         else:
-            print("Invalid value for 'features', it should be in ['all','var_muts'(run select_top_varible_variants() first),'distance'(run cal_distance() first)].")
-            return -1
+            raise("Invalid value for 'features', it should be in ['all','var_muts'(run select_top_varible_variants() first),'distance'(run cal_distance() first)].")
 
     obs_df = adata.obs.loc[x_df.columns,:]
 
