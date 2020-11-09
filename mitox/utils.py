@@ -571,7 +571,7 @@ def plot_clustermap(adata, x_df=None, features="var_muts", ann_color=None, ann_l
     if not ycluster:
         g.ax_row_dendrogram.remove()
 
-    plt.tight_layout()
+    # plt.tight_layout()
     g.savefig(fig_name)
     plt.close()
 
