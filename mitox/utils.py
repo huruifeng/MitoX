@@ -656,13 +656,13 @@ def plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DB
         ylabel = np.asarray(cluster_labels)
     else:
         if cluster_color not in adata.obs.columns:
-            print("Invalid value of 'cluster_color', it should be one of the values in anndata.obs_names.")
-            return -1
+            raise("Invalid value of 'cluster_color', it should be one of the values in anndata.obs_names.")
+            
         else:
             ylabel = adata.obs[cluster_color]
             if cluster_color.startswith("MT-") or cluster_color.startswith("mt-") :
                 if log2:
-                    ylabel = np.log2(ylabel)
+                    ylabel = np.log2(ylabel+1)
 
 
     y_set = list(set(ylabel))

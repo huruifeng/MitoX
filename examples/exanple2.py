@@ -85,7 +85,9 @@ mx.plot_expr(expr_adata,group="disease",using={"cell type":["delta cell"]},gene=
 combined_adata = mx.combine_mut_expr(mut_adata,expr_adata)
 
 mx.dimension_reduction(combined_adata)
+mx.plot_clusters(combined_adata,fig_name="cluster_tsne_combine.png", cluster_color="individual")
 mx.plot_clusters(combined_adata,fig_name="cluster_tsne_gene_MT-ATP8_combine.png", cluster_color="MT-ATP8")
+mx.plot_clusters(combined_adata,fig_name="cluster_tsne_gene_MT-ATP8_combine_log2.png", cluster_color="MT-ATP8",log2=True)
 
 mx.plot_expr(combined_adata,gene=["MT-ATP6","MT-ATP8","MT-CO1","MT-CO2"],plot_type="violin",strip=True,fig_name="expr_combine.png")
 mx.plot_expr(combined_adata,group="label",gene=["MT-ATP6","MT-ATP8","MT-CO1","MT-CO2"],plot_type="violin",strip=True,fig_name="expr_combine_label.png")
