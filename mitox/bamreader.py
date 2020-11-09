@@ -285,7 +285,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
                 cell_ls = []
                 for i in range(cell_size):
                     cell_x = Cell(good_barcodes[sam_i][i],sp=sp)
-                    (cell_x.A,cell_x.C,cell_x.G, cell_x.T, cell_x.coverage) = results[i]
+                    (cell_x.A,cell_x.C,cell_x.G, cell_x.T, cell_x.coverage,cell_x.total_reads) = results[i]
                     cell_ls.append(cell_x)
 
 
