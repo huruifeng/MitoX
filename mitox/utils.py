@@ -60,6 +60,10 @@ def get_coverage(adata,name="all"):
 def plot_coverage(x_df,color=None,fig_name="coverage_plot.png",fig_size=None,plot_type="circle",log2=True):
     if isinstance(x_df,pd.Series):
         x_df = pd.DataFrame(x_df)
+    elif isinstance(x_df,pd.DataFrame):
+        pass
+    else:
+        raise("The input should be a pd.Series with name or pd.DataFrame with column names")
 
     cov_df = x_df
     name = cov_df.columns

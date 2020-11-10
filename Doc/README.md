@@ -4,18 +4,18 @@ MitoX: exploring mitochondrial heteroplasmies and gene expressions from single c
 Table of Content
 ================
 * [Overview](#overview)
-* [Note (Important !!!)](#note)
+* [Note (important !!!)](#note)
 * [Functions & API](#api)
     * [gen_mut_profile()](#gen_mut_profile)
     * [gen_expression_profile()](#gen_expression_profile)
     * [read_sam()](#read_sam)
     * [read_table()](#read_table)
     * [write_table()](#write_table)
-    * [gen_expression_profile](#gen_expression_profile)
-    * [gen_expression_profile](#gen_expression_profile)
-    * [gen_expression_profile](#gen_expression_profile)
-    * [gen_expression_profile](#gen_expression_profile)
-    * [gen_expression_profile](#gen_expression_profile)
+    * [get_coverage()](#get_coverage)
+    * [plot_coverage()](#plot_coverage)
+    * [add_metadata()](#add_metadata)
+    * [filter_features()](#filter_features)
+    * [filter_cells()](#filter_cells)
     * [gen_expression_profile](#gen_expression_profile)
     * [gen_expression_profile](#gen_expression_profile)
     * [gen_expression_profile](#gen_expression_profile)
@@ -34,6 +34,11 @@ MitoX is a computational framework to investigate mitochondrial heteroplasmies a
 <a name="note"/>
 
 ## Note (important !!!)
+* The BAM/SAM file name will be used as sample or cell names.
+* In MitoX, when preparing dataframe, sample names (cells) should be in columns, and features (mutations,gene names) are in rows.
+* When using add_metadata() function, the first column must be the sample names, 
+and the second column MUST be the **'label'** column to indicate the sample groups.
+* In function **combine_mut_expr(mut_adata, expr_adata)**, the first parameter must be mutation anndata object.
 
 
 <a name="gen_mut_profile"/>
@@ -140,7 +145,7 @@ MitoX is a computational framework to investigate mitochondrial heteroplasmies a
 
 > 5. Write AnnData into local file.
 ```
-write_table(adata,file,sep="\t")::
+write_table(adata,file,sep="\t"):
     
  * Parameters:
     - adata (AnnData): anndata object that contains the mutation / gene expression profiles.
@@ -149,3 +154,77 @@ write_table(adata,file,sep="\t")::
 
 *return : NOne
 ```
+
+<a name="get_coverage"/>
+
+> 6. Get the coverage information for sample(s).
+```
+cov = get_coverage(adata,name="all")
+    
+ * Parameters:
+    - adata (AnnData): anndata object that contains the mutation / gene expression profiles.
+    - name      (str): sample name, when "all", returns a dataframe for all samples 
+
+*return (Series or DataFrame): coverage data for sample(s) 
+```
+<a name="plot_coverage"/>
+
+> 7. Plot the coverage information for sample(s).
+```
+plot_coverage(x_df,color=None,fig_name="coverage_plot.png",fig_size=None,plot_type="circle",log2=True)
+    
+ * Parameters:
+    - x_df (Series,DataFrame): A Series of DataFrame that contains the coverage data. 
+                               It can be the return value from get_coverage().
+    - color       (list, str): A color name (e.g. 'red') for the Series，
+                               OR, a list of colors for the DataFrome.
+    - fig_name          (str): figure loaction and name for saving.
+    - fig_size (float, float): Width, height in inches.
+    - plot_type         (str): "circle" or "plane".
+    - log2             (bool): Do log2 transform on coverage values or not.
+
+*return:  None 
+```
+<a name="add_metadata"/>
+
+> 8. Add annotation data (metadata) to samples.
+```
+add_metadata(adata,file_name,delimiter='\t')
+    
+ * Parameters:
+    - adata  (AnnData): anndata object that contains the mutation / gene expression profiles.
+    - file_name  (str): file path and name to the metadata file. 
+    - sep        (str): String of length 1. Field delimiter of the metadata file.
+
+*return:  None 
+```
+<a name="filter_features"/>
+
+> 9. Filter out features based on different metrics.
+```
+filter_features(adata, min_n_cells = None, max_n_cells=None, min_pct_cells = None, max_pct_cells=None)
+    
+ * Parameters:
+    - adata           (AnnData): anndata object that contains the mutation / gene expression profiles.
+    - min/max_n_cells     (int): Minimum/Maximum number of cells matated in one feature, optional (default: None)
+    - min.max_pct_cells (float): Minimum/Maximum percentage of cells mutated in one feature, optional (default: None)
+        
+*return:  None 
+```
+<a name="filter_cells"/>
+
+> 10. Filter out cells based on different metrics.
+```
+filter_cells(adata,min_n_features=None, max_n_features=None, min_pct_features=None, max_pct_features=None):
+    
+ * Parameters:
+    - adata           (AnnData): anndata object that contains the mutation / gene expression profiles.
+    - min/max_n_cells     (int): Minimum/Maximum number of mutations in the cell, optional (default: None)
+    - min.max_pct_cells (float): Minimum/Maximum percentage of mutations in the cell, optional (default: None)
+        
+*return:  None 
+```
+
+
+
+
