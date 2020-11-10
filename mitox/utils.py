@@ -371,6 +371,13 @@ def cal_distance(adata,features="all"):
     adata.obsm["distance"] = dis_df
     return None
 
+def write_distance(adata, file,sep="\t"):
+    if "distance" in adata.obsm:
+        dis_df = adata.obsm["distance"]
+    else:
+        raise ("Distance matrix does not exist, run cal_distance() first.")
+    dis_df.to_csv(file,sep=sep)
+    return None
 
 def select_specific_variants(adata,sample_name, min_af = 0.01, percent=0.8, check_other=True,other_min_af=0.01,other_n=5, other_percent=0):
     if isinstance(adata,ad.AnnData):
@@ -647,6 +654,8 @@ def plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DB
         return -1
     dimension =  adata.uns['params']['dimension_reduction']['n_components']
     dim_reducer = adata.uns['params']['dimension_reduction']['method']
+
+    dimension = 2 if dimension==2 else 3
 
     X_embedded = adata.obsm['X_dr']
 
