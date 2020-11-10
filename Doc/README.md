@@ -243,9 +243,8 @@ filter_cells(adata,min_n_features=None, max_n_features=None, min_pct_features=No
 *return:  None 
 ```
 
-
-$$\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.$$
-
+The distance is defined as: <img src="https://latex.codecogs.com/gif.latex?d_{ij}=\frac{\sum_{x}^{}(\sqrt{\left&space;|&space;AF_{x,j=i}-&space;AF_{x,j}\right&space;|}*(1_{c_{x,i}>0}*1_{c_{x,j}>0}))}{\sum_{x}^{}(1_{c_{x,i}>0}*1_{c_{x,j}>0})}" />
+<!--img src="http://chart.googleapis.com/chart?cht=tx&chl=d_{ij}=\frac{\sum_{x}^{}(\sqrt{|AF_{x,i}AF_{x,j}|}*(1_{c_{x,i}>0}*1_{c_{x,j}>0}))}{\sum_{x}^{}(1_{c_{x,i}>0}*1_{c_{x,j}>0})}" style="border:none;"-->
 
 
 
