@@ -141,7 +141,6 @@ def read_sam(bam_folder, fmt="bam",sp="human",
              tag_name="CB",
              barcodes="NULL",
              min_read=200,
-             max_depth=1e5,
              min_baseq=25,
              min_mapq=0,
              n_jobs=2):
@@ -150,7 +149,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
     :param format: File type, bam or sam
     :param chr_name: Name of mitochondrial genome as specified in the BAM files.
     :param seq_type: Sequencing type:bulk or sc.
-    :param combined_bam: If the BAM is merged file or not (It should be set to True for 10X or droplet data).
+    :param combined: If the BAM is merged file or not (It should be set to True for 10X or droplet data).
     :param tag_name: The name of the tag corresponding the cellular barcode. Default = "CB". For droplet scRNA-seq only.
     :param barcodes: The barcode list corresponding to the cells. For 10X genomics scRNA-seq data only.
     :param min_read: The minimum number of read counts to be considered a valid barcode (cell) in the analysis. Default = 1000. For droplet scRNAseq technologies only.
@@ -202,7 +201,7 @@ def read_sam(bam_folder, fmt="bam",sp="human",
 
         print("Cleaning memory...")
     elif seq_type == "sc":
-        if not combined_bam:
+        if not combined:
             print("Each BAM file is considered as a cell sample and running on each BAM file separately...")
 
             now = datetime.now()  # current date and time
