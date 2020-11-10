@@ -71,7 +71,6 @@ and the second column MUST be the **'label'** column to indicate the sample grou
     - min_baseq (int): The minimum read base quality below which the base is ignored.
     - min_mapq  (int): The minimum map quality below which the read is ignored.
     - n_jobs    (int): The number of threads will be used,each thread can handle one BAM file.
-
 *return (AnnData): anndata object that contains the heteroplamy profiles
 ```
 <a name="gen_expression_profile"/>
@@ -104,7 +103,6 @@ and the second column MUST be the **'label'** column to indicate the sample grou
     - n_jobs    (int): The number of threads will be used,each thread can handel one BAM file.
     - feature_type (str): Feature type (3rd column in GTF file) to be used. 
                           All features of other type are ignored. (default, suitable for RNA-Seq analysis using an Ensembl GTF file: exon).
-
 *return (AnnData): anndata object that contains the gene expression profiles
 ```
 
@@ -130,7 +128,6 @@ and the second column MUST be the **'label'** column to indicate the sample grou
     - min_baseq (int):
     - min_mapq  (int): The minimum map quality below which the read is ignored.
     - n_jobs    (int): The number of threads will be used,each thread can handel one BAM file.
-
 *return (Sample): A sample or sample list that contiains coverage information for each sample.
 ```
 
@@ -144,7 +141,6 @@ and the second column MUST be the **'label'** column to indicate the sample grou
     - file  (str): Path pointing to file.
     - sep   (str): Delimiter to use. 
     - type  (str): Data type - mutation profile table ('mut') or gene expression profile table ('expr').
-
 *return (AnnData): Anndata object that contains the mutation / gene expression profiles
 ```
 <a name="write_table"/>
@@ -157,7 +153,6 @@ write_table(adata,file,sep="\t"):
     - adata (AnnData): Anndata object that contains the mutation / gene expression profiles.
     - file      (str): File path and name 
     - sep       (str): String of length 1. Field delimiter for the output file..
-
 *return : None
 ```
 
@@ -170,7 +165,6 @@ cov = get_coverage(adata,name="all")
  * Parameters:
     - adata (AnnData): Anndata object that contains the mutation / gene expression profiles.
     - name      (str): Sample name, when "all", returns a dataframe for all samples 
-
 *return (Series or DataFrame): coverage data for sample(s) 
 ```
 <a name="plot_coverage"/>
@@ -188,7 +182,6 @@ plot_coverage(x_df,color=None,fig_name="coverage_plot.png",fig_size=None,plot_ty
     - fig_size (float, float): Width, height in inches.
     - plot_type         (str): "circle" or "plane".
     - log2             (bool): Do log2 transform on coverage values or not.
-
 *return:  None 
 ```
 <a name="add_metadata"/>
@@ -201,7 +194,6 @@ add_metadata(adata,file_name,delimiter='\t')
     - adata  (AnnData): Anndata object that contains the mutation / gene expression profiles.
     - file_name  (str): File path and name to the metadata file. 
     - sep        (str): String of length 1. Field delimiter of the metadata file.
-
 *return:  None 
 ```
 <a name="filter_features"/>
@@ -213,8 +205,7 @@ filter_features(adata, min_n_cells = None, max_n_cells=None, min_pct_cells = Non
  * Parameters:
     - adata           (AnnData): Anndata object that contains the mutation / gene expression profiles.
     - min/max_n_cells     (int): Minimum/Maximum number of cells matated in one feature, optional (default: None)
-    - min.max_pct_cells (float): Minimum/Maximum percentage of cells mutated in one feature, optional (default: None)
-        
+    - min.max_pct_cells (float): Minimum/Maximum percentage of cells mutated in one feature, optional (default: None)     
 *return:  None 
 ```
 <a name="filter_cells"/>
@@ -226,8 +217,7 @@ filter_cells(adata,min_n_features=None, max_n_features=None, min_pct_features=No
  * Parameters:
     - adata           (AnnData): anndata object that contains the mutation / gene expression profiles.
     - min/max_n_cells     (int): Minimum/Maximum number of mutations in the cell, optional (default: None)
-    - min.max_pct_cells (float): Minimum/Maximum percentage of mutations in the cell, optional (default: None)
-        
+    - min.max_pct_cells (float): Minimum/Maximum percentage of mutations in the cell, optional (default: None)      
 *return:  None 
 ```
 <a name="plot_mean_std"/>
@@ -238,8 +228,7 @@ filter_cells(adata,min_n_features=None, max_n_features=None, min_pct_features=No
     
  * Parameters:
     - adata     (AnnData): Anndata object that contains the mutation / gene expression profiles.
-    - fig_name      (str): Figure loaction and name for saving.
-        
+    - fig_name      (str): Figure loaction and name for saving.       
 *return:  None 
 ```
 <a name="cal_distance"/>
@@ -250,10 +239,16 @@ filter_cells(adata,min_n_features=None, max_n_features=None, min_pct_features=No
     
  * Parameters:
     - adata (AnnData): Anndata object that contains the heteroplasmy profile.
-    - features  (str): Feature that will be used fro the calcualtion,'var_muts' or 'all'.
-        
+    - features  (str): Feature that will be used fro the calcualtion,'var_muts' or 'all'.   
 *return:  None 
 ```
+
+
+$$\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.$$
+
+
+
+
 <a name="write_distance"/>
 
 > 13. Write relatedbess matrix to local file.
@@ -267,6 +262,7 @@ write_distance(adata, file,sep="\t")
 
 *return : None
 ```
+
 <a name="select_specific_variants"/>
 
 > 14. Select clone or sample specific variants.
@@ -281,7 +277,6 @@ select_specific_variants(adata,sample_name, min_af = 0.01, percent=0.8, check_ot
     - check_other (bool): Apply the filter conditions to the other samples. if False, the result may contain homoplamic variants.
     - other_min_af, other_n ,other_percent: Used to define the conditons to filter variants other than the selected samples.
                                             other_n or other_percent will be used whichever defines the smaller sample number. 
-
 *return (list): The list variant IDs.
 ```
 <a name="select_top_varible_variants"/>
@@ -297,7 +292,6 @@ select_top_varible_variants(adata, top_n = 50, percentile=20, fig_name = 'std_vs
     - fig_name     (str): Figure name for saving.
     - fig_size (float, float): Width, height in inches.
     - pad        (float): Padding between the frame and figure edge.  
-
 *return: None.
 ```
 <a name="select_top_principal_components"/>
@@ -314,7 +308,6 @@ select_top_principal_components(adata, features="var_muts", n_pc=50, max_pc=100,
     - fig_name     (str): Figure name for saving.
     - fig_size (float, float): Width, height in inches.
     - pad        (float): Padding between the frame and figure edge.  
-
 *return: None.
 ```
 <a name="plot_clustermap"/>
@@ -377,8 +370,7 @@ combine_mut_expr(mut_adata, expr_adata)
 
 * Parameters:
     - mut_adata  (AnnData): Anndata object that contains the heteroplasmy profile.
-    - expr_adata  AnnData): Anndata object that contains the gene expression profile..
-
+    - expr_adata (AnnData): Anndata object that contains the gene expression profile..
 *return (AnnData): Combined anndata object.
 ```
 <a name="plot_expr"/>
@@ -389,11 +381,11 @@ plot_expr(adata, gene, group=None, using={}, fig_name="expr_plot.png", fig_size=
           strip=False,log2=True, all_in_one=True,col_n=0,xrotate=30, **kwargs)
 
 * Parameters:
-    - adata    (AnnData): Anndata object that contains the heteroplasmy profile.
-    - gene        (list): A list of genes to plot.
-    - group        (str): Define the groups to compare, it should be one of the column names in metadata.
-    - using       (dict): A dict to define which the sub-dataset that will be ploted.
-    - fig_name     (str): Figure name for saving.
+    - adata   (AnnData): Anndata object that contains the heteroplasmy profile.
+    - gene       (list): A list of genes to plot.
+    - group       (str): Define the groups to compare, it should be one of the column names in metadata.
+    - using      (dict): A dict to define which the sub-dataset that will be ploted.
+    - fig_name    (str): Figure name for saving.
     - fig_size (float, float): Width, height in inches.
     - strip      (bool): Plot the stripplot.
     - log2       (bool): Do log2 transformation of values.
