@@ -108,11 +108,13 @@ The full documents for all functions in MitoX can be accessed in the [**Doc fold
 
 ## Examples
 
-* Example 1: [Deatcte heteroplasmy profiles from (sc)RNA-seq and (sc)ATAC-seq data]()
+All the datasets needed for reproducing the results is available [HERE](#https://bioinfo.uth.edu/mitox/)
 
-* Example 2: [Investigate mitochondrial gene expressions and plot results]()
+* Example 1: [Deatcte heteroplasmy profiles from (sc)RNA-seq and (sc)ATAC-seq data](#https://github.com/huruifeng/MitoX/tree/master/Doc)
 
-* Example 3: [Running MitoX on droplet based dataset (10X dataset)]()
+* Example 2: [Investigate mitochondrial gene expressions and plot results](#https://github.com/huruifeng/MitoX/tree/master/Doc)
+
+* Example 3: [Running MitoX on droplet based dataset (10X dataset)](#https://github.com/huruifeng/MitoX/tree/master/Doc)
 
 ## Functions and API
 * #### User can open the [**Doc folder**](https://github.com/huruifeng/MitoX/tree/master/Doc) for API reference.
