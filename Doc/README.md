@@ -1,3 +1,7 @@
+.markdown-block {
+    background: #101010;
+}
+
 # MitoX
 MitoX: exploring mitochondrial heteroplasmies and gene expressions from single cell sequencing assays
 
