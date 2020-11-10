@@ -9,7 +9,7 @@ and mitochondrial gene expression profiles. After generating the heteroplasmy pr
 MitoX provides various analysis and powerful plot functions. 
 One of the major functions is samples clustering, MitoX implements commonly used dimension reduction methods,
  such as `PCA`, `t-SNE`, and `UMAP` through the ***dimension_reduction()*** function. 
- User can do samples clustering based on the results from ***dimension_reduction()*** using ***plot_clusters()**** . 
+ User can do samples clustering based on the results from ***dimension_reduction()*** using ***plot_clusters()*** . 
  In plot_clusters(), MitoX can dtetcte samles clusters automatically using the ***Density-Based Spatial Clustering of Applications with Noise (DBSCAN)***
  or ***KMeans*** algorithm, and color the clusters. 
  Other major funtions include ***plot a clustered heatmap*** among variants and samples, 
