@@ -45,6 +45,7 @@ MitoX is a computational framework to investigate mitochondrial heteroplasmies a
 * When using add_metadata() function, the first column must be the sample names, 
 and the second column MUST be the **'label'** column to indicate the sample groups.
 * In function **combine_mut_expr(mut_adata, expr_adata)**, the first parameter must be mutation anndata object.
+* The pysam python package can only be run on Linux or Apple Mac system, so MitoX can only run on those systems (**It is not support Windows system**).
 
 
 <a name="gen_mut_profile"/>
