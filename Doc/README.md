@@ -356,9 +356,9 @@ plot_clusters(adata, fig_name="cluster.png", cluster_color="auto",method="DBSCAN
                           Otherwise, the value should be one of the column names in metadata.
     - method       (str): Method used to detect if cluster:
     - cluster_n    (int): When method="kmeans", set the number of cluster that will be detected.
-    - color_pal    (int): When cluster_color="[gene_name]", set the color palette for continuous data.
+    - color_pal    (int): When cluster_color=["gene_name"], set the color palette for continuous data.
     - cbar_frac  (float): Color bar size.
-    - log2        (bool): When cluster_color="[gene_name]", do log2 transformation.
+    - log2        (bool): When cluster_color=["gene_name"], do log2 transformation.
 *return: None.
 ```
 <a name="combine_mut_expr"/>
