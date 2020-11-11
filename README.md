@@ -28,7 +28,7 @@ so **MitoX is a highly efficient tool for analyzing mitochondrial heteroplasmy a
 
 **MitoX** depends on the following Python packages. These need to be installed separately:
 ```
-pysam
+pysam (Pysam does not yet support windows currently.)
 HTSeq
 anndata
 ```
