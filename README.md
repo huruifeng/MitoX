@@ -52,7 +52,7 @@ pip install .
 The full documents for all functions in MitoX can be accessed in the [**Doc folder**](https://github.com/huruifeng/MitoX/tree/master/Doc)
 
 1. Generate the **heteroplamy profiles** for all samples/cells
-```
+```python
  mut_adata = gen_mut_profile(bams, fmt="bam", sp="human", chr_name="MT", seq_type="sc", combined=False, tag_name="CB",
                            barcodes="NULL", min_read=200, max_depth=1e5, min_baseq=25, min_mapq=0, n_jobs=2)
     
@@ -75,7 +75,7 @@ The full documents for all functions in MitoX can be accessed in the [**Doc fold
 *return (AnnData): anndata object containd the heteroplamy profiles
 ```
 2. Generate the mitochondrial **gene expression profiles** for all samples/cells
-```
+```python
  expr_adata = gen_expression_profile(bams, gtf_file, fmt="bam", sp="human", chr_name="MT", eq_type="sc",
                                     combined=False, tag_name="CB", barcodes="NULL", min_read=200, stranded=True,
                                     feature_type="exon", min_mapq=10, n_jobs=2):
